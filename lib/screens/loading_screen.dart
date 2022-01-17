@@ -15,8 +15,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
     getLocation();
   }
 
+  Location location = Location();
+
   getLocation() async {
-    Location location = Location();
     await location.getLocation();
     print(location.latitude);
     print(location.longitude);
@@ -24,6 +25,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    location.getData();
     return const Scaffold();
   }
 }
