@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
@@ -25,7 +27,12 @@ class Location {
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final data = response.body;
-      print(data);
+
+      final decodedData = jsonDecode(data);
+
+      final double temperature = decodedData["main"]['temp'];
+      final String city = decodedData["name"];
+      final int condition = decodedData["weather"][0]['id'];
     } else {
       print(response.statusCode);
     }
