@@ -12,20 +12,16 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
-    getLocation();
+    getLocationData();
   }
 
-  Location location = Location();
-
-  getLocation() async {
-    await location.getLocation();
-    print(location.latitude);
-    print(location.longitude);
+  getLocationData() async {
+    Location location = Location();
+    await location.getLocationData();
   }
 
   @override
   Widget build(BuildContext context) {
-    location.getData();
     return const Scaffold();
   }
 }
