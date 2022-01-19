@@ -6,7 +6,7 @@ final apiKey = dotenv.env['API_KEY'];
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
 class WeatherModel {
-  getLocationWeather() async {
+  Future<dynamic> getLocationWeather() async {
     final location = Location();
     await location.getCurrentLocation();
 
