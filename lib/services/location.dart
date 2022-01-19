@@ -6,15 +6,14 @@ final apiKey = dotenv.env['API_KEY'];
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
 class Location {
-  double? latitude;
-  double? longitude;
-
   Future getLocationData() async {
+    late double latitude;
+    late double longitude;
     try {
-      final Position? position = await Geolocator.getCurrentPosition(
+      final Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.low);
-      latitude = position?.latitude ?? 35;
-      longitude = position?.longitude ?? 139;
+      latitude = position.latitude;
+      longitude = position.longitude;
     } catch (e) {
       latitude = 35;
       longitude = 139;
