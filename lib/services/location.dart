@@ -3,7 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
 
 final apiKey = dotenv.env['API_KEY'];
-const apiUrl = 'https://samples.openweathermap.org/data/2.5/weather';
+const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
 class Location {
   double? latitude;
@@ -20,15 +20,12 @@ class Location {
       longitude = 139;
     }
 
-    final url = Uri.parse('$apiUrl?lat=$latitude&lon=$longitude&appid=$apiKey');
-    print(url);
+    final url = Uri.parse(
+        '$apiUrl?lat=$latitude&lon=$longitude&units=metric&appid=$apiKey');
     final networkHelper = NetworkHelper(url);
 
     final decodedData = await networkHelper.getData();
 
-    final double temperature = decodedData["main"]['temp'];
-    final String city = decodedData["name"];
-    final int condition = decodedData["weather"][0]['id'];
-    print(city);
+    return decodedData;
   }
 }
