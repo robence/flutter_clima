@@ -9,6 +9,8 @@ class CityScreen extends StatefulWidget {
 }
 
 class _CityScreenState extends State<CityScreen> {
+  String cityName = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,7 @@ class _CityScreenState extends State<CityScreen> {
         constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
-            children: <Widget>[
+            children: [
               Align(
                 alignment: Alignment.topLeft,
                 child: TextButton(
@@ -30,12 +32,19 @@ class _CityScreenState extends State<CityScreen> {
                   child: const Icon(
                     Icons.arrow_back_ios,
                     size: 50.0,
+                    color: Colors.white,
                   ),
                 ),
               ),
               Container(
                 padding: const EdgeInsets.all(20.0),
-                child: null,
+                child: TextField(
+                  style: const TextStyle(color: Colors.black),
+                  decoration: kTextFieldInputDecoration,
+                  onChanged: (value) {
+                    cityName = value;
+                  },
+                ),
               ),
               TextButton(
                 onPressed: () {},
